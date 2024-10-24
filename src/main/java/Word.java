@@ -22,7 +22,7 @@ public class Word {
             }
         }
         if(!isInside){
-            throw new OpenLetterException("Call OpenLetter() of " + this.getClass() + " : ch '" + ch + "' is not inside the word");
+            throw new WordOpenLetterException("Call " + Thread.currentThread().getStackTrace()[1].getMethodName() + " of " + this.getClass() + " : ch '" + ch + "' is not inside the word");
         }
     }
 

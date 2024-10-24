@@ -28,9 +28,8 @@ class Game {
             } else if(word.textContains(text.charAt(0))) {
                 try {
                     word.openLetter(text.charAt(0));
-                }catch(OpenLetterException oe){
-                    ColorPrinter.printRedBackgroundText(oe.getMessage());
-                    ColorPrinter.printRedBackgroundText("in " + this.getClass() + " method " + Thread.currentThread().getStackTrace()[1].getMethodName());
+                }catch(WordOpenLetterException oe){
+                    Menu.printTraceInfo(oe);
                 }
                 printLuckyMessage(text.charAt(0));
             }else{

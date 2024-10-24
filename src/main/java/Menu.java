@@ -43,14 +43,17 @@ class Menu{
             String word = loader.loadWord(generateRandomLength(gameLevel));
             Game game = new Game(new Word(word), gameLevel);
             game.start();
-            } catch (NullPointerException e) {
-                ColorPrinter.printRedBackgroundText("Проверьте имя файла filename !");
-                ColorPrinter.printRedBackgroundText("in " + this.getClass() + " method " + Thread.currentThread().getStackTrace()[1].getMethodName());
-            }catch(OpenLetterException e){
-                ColorPrinter.printRedBackgroundText(e.getMessage());
-                ColorPrinter.printRedBackgroundText("in " + this.getClass() + " method " + Thread.currentThread().getStackTrace()[1].getMethodName());
+            } catch (LoaderWordException | WordOpenLetterException e) {
+                printTraceInfo(e);
             }
         }
+    }
+
+    public static <T extends Exception> void printTraceInfo(T e) {
+        ColorPrinter.printRedBackgroundText(e.getMessage());
+        StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
+        for(StackTraceElement sTE  : stackTraceElements)
+            ColorPrinter.printRedBackgroundText("in " + sTE.getClassName() + " method " + sTE.getMethodName());
     }
 
     private GameLevel inputGameLevel() {
@@ -65,12 +68,8 @@ class Menu{
             return null;
         try {
             return GameLevelFactory.create(key);
-        }catch(GameLevelFactoryCreateException e){
-            ColorPrinter.printRedBackgroundText(e.getMessage());
-            ColorPrinter.printRedBackgroundText("in " + this.getClass() + " method " + Thread.currentThread().getStackTrace()[1].getMethodName());
-            return null;
-        }catch(Exception e){
-            System.out.println(e.getMessage());
+        } catch(Exception e){
+            printTraceInfo(e);
             return null;
         }
     }
