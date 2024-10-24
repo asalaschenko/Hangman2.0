@@ -86,6 +86,12 @@ class Menu{
         }
     }
 
+    private static int generateRandomLength(GameLevel gameLevel) {
+        Random r = new Random();
+        int lengthWord = r.nextInt(gameLevel.getMaxWordLength()- gameLevel.getMinWordLength() + 1) + gameLevel.getMinWordLength();
+        return lengthWord;
+    }
+
     private static void printStartMessage(){
         System.out.println("""
                 ГЛАВНОЕ МЕНЮ\
@@ -99,17 +105,12 @@ class Menu{
                 "EXIT" для выхода из игры.""");
     }
 
-    private static int generateRandomLength(GameLevel gameLevel) {
-        Random r = new Random();
-        int lengthWord = r.nextInt(gameLevel.getMaxWordLength()- gameLevel.getMinWordLength() + 1) + gameLevel.getMinWordLength();
-        return lengthWord;
-    }
-
     private void printHelpMessage() {
         ColorPrinter.printYellowText("Программа загадывает слово. Вам необходимо, отгадывая буквы, разгадать всё слово. " +
-                "Вы можете совершить не более:\n" + "для EASY   - " + new GameEasyLevel().getMaxUserError() + " неудачных попыток \n" +
-                "для MEDIUM - " + new GameMediumLevel().getMaxUserError() + " неудачных попыток \n" +
-                "для HARD   - " + new GameHardLevel().getMaxUserError() + " неудачных попыток \n");
+                "Вы можете совершить не более:\n"
+                + "для EASY   - " + new GameEasyLevel().getMaxUserError()   + " неудачных попыток \n"
+                + "для MEDIUM - " + new GameMediumLevel().getMaxUserError() + " неудачных попыток \n"
+                + "для HARD   - " + new GameHardLevel().getMaxUserError()   + " неудачных попыток \n");
     }
 
 }

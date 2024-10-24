@@ -14,19 +14,25 @@ public class ColorPrinter {
 
         public String getCode(){
             return code;
+            }
         }
-    }
 
-    public static void printRedText(String text){
-        System.out.println(Color.RED.getCode() + text + Color.RESET.getCode());
-    }
+        public static void printRedText(String text){
+            System.out.println(Color.RED.getCode()
+                    + text
+                    + Color.RESET.getCode());
+        }
 
-    public static void printYellowText(String text){
-        System.out.println(Color.YELLOW.getCode() + text + Color.RESET.getCode());
-    }
+        public static void printYellowText(String text){
+            System.out.println(Color.YELLOW.getCode()
+                    + text
+                    + Color.RESET.getCode());
+        }
 
-    public static void printRedBackgroundText(String text){
-        System.out.println(Color.RED_BACKGROUND.getCode() + text + Color.RESET.getCode());
+        public static void printRedBackgroundText(String text){
+            System.out.println(Color.RED_BACKGROUND.getCode()
+                    + text
+                    + Color.RESET.getCode());
     }
 
 }
