@@ -29,7 +29,7 @@ class Game {
                 try {
                     word.openLetter(text.charAt(0));
                 }catch(WordOpenLetterException oe){
-                    Menu.printTraceInfo(oe);
+                    Main.printTraceInfo(oe);
                 }
                 printLuckyMessage(text.charAt(0));
             }else{

@@ -11,7 +11,9 @@ public class GameLevelFactory {
             case EASY_KEY -> new GameEasyLevel();
             case MEDIUM_KEY -> new GameMediumLevel();
             case HARD_KEY -> new GameHardLevel();
-            default -> throw new GameLevelFactoryCreateException("Call Create() of "
+            default -> throw new GameLevelFactoryCreateException("Call "
+                    + Thread.currentThread().getStackTrace()[1].getMethodName()
+                    + "() of "
                     + MethodHandles.lookup().lookupClass()
                     + " : key = " + key + " недопустимый ключ");
         };

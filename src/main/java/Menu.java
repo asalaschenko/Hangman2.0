@@ -44,16 +44,9 @@ class Menu{
             Game game = new Game(new Word(word), gameLevel);
             game.start();
             } catch (LoaderWordException | WordOpenLetterException e) {
-                printTraceInfo(e);
+                Main.printTraceInfo(e);
             }
         }
-    }
-
-    public static <T extends Exception> void printTraceInfo(T e) {
-        ColorPrinter.printRedBackgroundText(e.getMessage());
-        StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
-        for(StackTraceElement sTE  : stackTraceElements)
-            ColorPrinter.printRedBackgroundText("in " + sTE.getClassName() + " method " + sTE.getMethodName());
     }
 
     private GameLevel inputGameLevel() {
@@ -69,7 +62,7 @@ class Menu{
         try {
             return GameLevelFactory.create(key);
         } catch(Exception e){
-            printTraceInfo(e);
+            Main.printTraceInfo(e);
             return null;
         }
     }
@@ -112,11 +105,11 @@ class Menu{
         return lengthWord;
     }
 
-
     private void printHelpMessage() {
         ColorPrinter.printYellowText("Программа загадывает слово. Вам необходимо, отгадывая буквы, разгадать всё слово. " +
                 "Вы можете совершить не более:\n" + "для EASY   - " + new GameEasyLevel().getMaxUserError() + " неудачных попыток \n" +
                 "для MEDIUM - " + new GameMediumLevel().getMaxUserError() + " неудачных попыток \n" +
                 "для HARD   - " + new GameHardLevel().getMaxUserError() + " неудачных попыток \n");
     }
+
 }
